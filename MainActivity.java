@@ -1,42 +1,59 @@
-package com.example.leaphacks; //change this 
+package com.example.leaphacks;
 
-import android.app.DatePickerDialog;
-import java.util.Calendar;
-import androidx.fragment.app.DialogFragment;
 import android.os.Bundle;
+//import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import java.text.DateFormat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class MainActivity extends AppCompatActivity {
+
+    String name, date, description;
+
+    EditText nameInput;
+    EditText dateInput;
+    EditText descriptionInput;
+
+    Button submitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DialogFragment datePicker = new DatePickerFragment();
-        datePicker.show(getSupportFragmentManager(), "date picker");
-    }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        dateInput = (EditText) findViewById(R.id.dateInput);
+        descriptionInput = (EditText) findViewById(R.id.descriptionInput);
 
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(currentDateString);
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                name = nameInput.getText().toString();
+                date = dateInput.getText().toString();
+                description = descriptionInput.getText().toString();
+
+                showToast(name);
+                showToast(date);
+                showToast(description);
             }
         });
+
+    }
+
+    private void showToast(String text){
+        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 }
