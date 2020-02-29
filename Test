@@ -57,3 +57,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+<com.github.sundeepk.compactcalendarview.CompactCalendarView
+            android:id="@+id/compactcalendar_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:compactCalendarBackgroundColor="#ffe95451"
+            app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+            app:compactCalendarMultiEventIndicatorColor="#fff"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextSize="12sp" />
+            
+    compile 'com.github.sundeepk:compact-calendar-view:3.0.0'
