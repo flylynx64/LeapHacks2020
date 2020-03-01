@@ -1,4 +1,4 @@
-package com.example.leaphacks; //change this
+package com.example.leaphacks;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
