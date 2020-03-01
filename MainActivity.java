@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.text.DateFormat;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.Menu;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     String name, startTime, endTime, location, description;
@@ -37,15 +40,36 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_main);
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.show(getSupportFragmentManager(), "date picker");
-        Button button1 = (Button) findViewById(R.id.enter);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+        Button button1 = (Button) findViewById(R.id.search);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                setContentView(R.layout.results);
+                createnew();
             }
         });
+
     }
 
     @Override
@@ -108,5 +132,37 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 });
             }
         });
+    }
+    public void createnew(){
+        Button add_button = (Button) findViewById(R.id.add_button);
+        add_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                name = "Bain and Company Info Session";
+                startTime = "2:00 pm";
+                endTime = "4:00 pm";
+                location = "SSB 4.102";
+                description = "Coffee Chats with Amanda Moehnke, PhD (Manager in Bain's Houston office) and Rina Rotunno.";
+                Event temp = new Event(startTime, endTime, name, location, description);
+                events.get((2)*31+2).set(0, temp);
+                setContentView(R.layout.activity_main);
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+
+        });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }
