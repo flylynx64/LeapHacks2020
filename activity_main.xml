@@ -1,26 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.application.datepickerexample.MainActivity">
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/results_found"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:text="date"
-        android:textSize="30sp" />
+        android:text="'recruiting' : 2 result(s) found "
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Return to Calendar" />
+    <SearchView
+        android:id="@+id/search_in_results"
+        android:layout_width="409dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-</RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="409dp"
+        android:layout_height="653dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/results_found">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/event_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Bain and Company Info Session"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/event_date_time_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mar 02, 2020 | 2:00 - 4:00 PM | SSB 4.102"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/event_descrip_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coffee Chats with Amanda Moehnke, PhD (Manager in Bain's Houston office) and Rina Rotunno" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_button"
+                    android:layout_width="205sp"
+                    android:layout_height="match_parent"
+                    android:text="Add to Calendar" />
+
+                <Button
+                    android:id="@+id/learn_more"
+                    android:layout_width="205sp"
+                    android:layout_height="match_parent"
+                    android:text="Learn More" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/event_title_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Central Intelligence Agency"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/event_date_time_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mar 05, 2020 | 11:30 AM - 12:30 PM | UTA 5.522"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/event_descrip_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CIA Directorate of Digital Innovation’s Data Scientists will be on campus and have many open hiring requirements across the directorate." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="205sp"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Calendar" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="205sp"
+                    android:layout_height="wrap_content"
+                    android:text="Learn more" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
